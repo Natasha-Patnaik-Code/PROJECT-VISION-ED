@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - Student Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background:rgb(100, 124, 219);
+            color: #fff;
+            padding: 20px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 900;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 80px;
+        }
+
+        #searchBar {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 60%;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        #projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: rgba(24, 30, 210, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.3);
+            text-align: center;
+            width: 280px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            color: #e0e0e0;
+        }
+
+        .project-card a, .project-card button {
+            display: block;
+            margin: 10px auto;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border: none;
+        }
+
+        .project-card a:hover, .project-card button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        #projectForm {
+            text-align: center;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+        }
+
+        #projectForm input, #projectForm textarea, #projectForm button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #projectForm button {
+            cursor: pointer;
+            background: #000;
+            color: #fff;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let projects = [];
+
+            function displayProjects() {
+                let container = document.getElementById("projects-container");
+                container.innerHTML = "";
+
+                projects.forEach(project => {
+                    let card = document.createElement("div");
+                    card.classList.add("project-card");
+                    card.innerHTML = `
+                        <h3>${project.name}</h3>
+                        <p>${project.description}</p>
+                        <a href="${project.file}" download>Download File</a>
+                        <button onclick="viewProject('${project.name}')">View Project</button>
+                        <button onclick="collaborate('${project.name}')">Collaborate</button>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            document.getElementById("projectForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                let name = document.getElementById("projectName").value;
+                let description = document.getElementById("projectDescription").value;
+                let file = document.getElementById("projectFile").value.split('\\').pop();
+                
+                if (name && description && file) {
+                    projects.push({ name, description, file });
+                    displayProjects();
+                    this.reset();
+                } else {
+                    alert("Please fill in all fields!");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="announcements.html">Announcements</a></li>
+            <li><a href="alumni.html">Alumni</a></li>
+            <li><a href="clubs.html">Student Communities</a></li>
+            <li><a href="events.html">Events</a></li>
+        </ul>
+    </nav>
+
+    <h1>Student Projects</h1>
+    <input type="text" id="searchBar" placeholder="Search projects...">
+
+    <form id="projectForm">
+        <input type="text" id="projectName" placeholder="Project Name" required>
+        <textarea id="projectDescription" placeholder="Project Description" required></textarea>
+        <input type="file" id="projectFile" required>
+        <button type="submit">Add Project</button>
+    </form>
+
+      
+</body>
+</html>
