@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANNOUNCEMENTS</title>
+    <link rel="stylesheet" href="announcements.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="alumni.html">Alumni</a></li>
+            <li><a href="clubs.html">Clubs</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><button id="start-speech" onclick="textTospeech()">Speak</button></li>
+            <li><button id="stop-speech" onclick="stopspeech()">🛑Stop</button></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>ANNOUNCEMENTS</h1>
+        <div id="announcement-container"></div>
+    </div>
+
+    <script>
+        let announcements = [
+            { title: "Announcement 1", message: "This is the first announcement", date: "2025-03-06T10:00:00" },
+            { title: "Announcement 2", message: "This is the second announcement", date: "2025-03-05T14:30:00" },
+        ];
+
+        // Simulate fetching announcements from the backend
+        async function fetchAnnouncements() {
+            let container = document.getElementById("announcement-container");
+            container.innerHTML = "";
+
+            announcements.forEach(a => {
+                let div = document.createElement("div");
+                div.classList.add("announcement-card");
+                div.innerHTML = `<h3>${a.title}</h3><p>${a.message}</p><small>${new Date(a.date).toLocaleString()}</small>`;
+                container.appendChild(div);
+            });
+        }
+
+        // Initialize the page
+        fetchAnnouncements();
+    </script>
+
+    <script>
+        function textTospeech() {
+            let text = document.body.innerText;
+            let speech = new SpeechSynthesisUtterance();
+            document.getElementById("start-speech").style.display = "none";
+            document.getElementById("stop-speech").style.display = "inline";
+            speech.text = text;
+            speech.volume = 1;
+            speech.rate = 1;
+            speech.pitch = 1;
+            window.speechSynthesis.speak(speech);
+        }
+
+        function stopspeech() {
+            window.speechSynthesis.cancel();
+            document.getElementById("start-speech").style.display = "inline";
+            document.getElementById("stop-speech").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

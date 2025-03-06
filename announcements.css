@@ -1,0 +1,154 @@
+/* General Body */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    margin: 0;
+    padding: 0;
+    padding-top: 80px;
+    /* This ensures the content doesn't overlap with the fixed navbar */
+}
+
+/* Speech Button */
+#start-speech,
+#stop-speech {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+#start-speech:hover,
+#stop-speech:hover {
+    background-color: #0056b3;
+}
+
+#stop-speech {
+    display: none;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.navbar h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin-right: 20px;
+    gap: 30px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #00c6ff;
+}
+
+/* Container holding announcements */
+.container {
+    max-width: 900px;
+    margin: 80px auto 20px;
+    /* Adjusted margin-top to avoid overlap with navbar */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Announcement Cards */
+.announcement-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Admin Panel */
+#admin-panel {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: none;
+}
+
+/* Input, Textarea, and Button */
+input,
+textarea,
+button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+button {
+    background: #1976d2;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1565c0;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+
+    /* Navbar Adjustment for Mobile */
+    .navbar ul {
+        display: block;
+        text-align: center;
+    }
+
+    .navbar ul li {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    /* Container Padding and Margin */
+    .container {
+        margin-top: 120px;
+        /* Adjust top margin for smaller screens */
+        padding: 15px;
+    }
+
+    /* Announcement Card Adjustment */
+    .announcement-card {
+        padding: 12px;
+    }
+
+    /* Button Styling */
+    button {
+        padding: 10px;
+    }
+}
